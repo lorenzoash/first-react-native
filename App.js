@@ -7,38 +7,41 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View, Image } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  Button
+} from "react-native";
 
 export default class App extends Component {
   constructor() {
     super()
-    this.state ={
-
-    }
-    this.state.customStyles = {
-      color: "red"
-    }
-    setInterval(() => {
-      if(this.state.customStyles.color == "red") {
-        this.setState({
-          customStyles: {
-            color: 'blue'
-          }
-        })
-      }else {
-          this.setState({
-            customStyles: {
-              color: 'red'
-            }
-          })
-        }
-
-    }, 800)
+    this.state={}
+    this.buttonPressed = this.buttonPressed.bind(this)
+  }
+  buttonPressed() {
+    // const username = this._username._lastNativeText
+    // const password = this._password._lastNativeText
   }
   render() {
     return (
       <View style={styles.container}>
-        <Text style={[styles.welcome, this.state.customStyles]}> Prime Time League</Text>
+        <Text style={{marginBottom: 20}}>Username</Text>
+        <TextInput style={{borderBottomColor: 'green', borderBottomWidth: 1}}
+          defaultValue={this.state.username}
+          onChangeText={text => this.setState({username: text})}
+        />
+        <Text style={{marginTop: 10, marginBottom: 20}}>Password</Text>
+        <TextInput style={{borderBottomColor: 'green', borderBottomWidth: 1}} 
+                defaultValue={this.state.password}
+                onChangeText={text => this.setState({password: text})}
+        />
+
+        <Button title={"Sign In"} onPress={this.buttonPressed}/>
       </View>
     );
   }
@@ -48,18 +51,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF"
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: "center",
-    margin: 10,
-    color: "blue"
-  },
-  instructions: {
-    textAlign: "center",
-    color: "#333333",
-    marginBottom: 5
+    padding: 70
   }
 });
